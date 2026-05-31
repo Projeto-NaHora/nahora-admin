@@ -77,3 +77,4 @@ testem.log
 /typings
 
 .docs
+.vercel
