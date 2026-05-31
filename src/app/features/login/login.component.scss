@@ -1,0 +1,378 @@
+.login {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  // ── Left brand panel ──────────────────────────────────────────
+
+  &__brand {
+    width: 520px;
+    min-width: 520px;
+    background: #f27a24;
+    padding: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+
+    // Decorative circles
+    &::before {
+      content: '';
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.05);
+      top: -96px;
+      left: -96px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 384px;
+      height: 384px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.05);
+      bottom: -64px;
+      right: -64px;
+    }
+  }
+
+  &__brand-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__brand-icon {
+    width: 44px;
+    height: 44px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__brand-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.02em;
+  }
+
+  &__brand-stats {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__brand-percent {
+    font-family: 'Inter', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+  }
+
+  &__brand-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 8px;
+  }
+
+  // ── Right form panel ──────────────────────────────────────────
+
+  &__form {
+    flex: 1;
+    background: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__card {
+    width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // ── Logo ──────────────────────────────────────────────────────
+
+  &__logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 32px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  &__logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  // ── Typography ────────────────────────────────────────────────
+
+  &__title {
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 36px;
+    margin: 0 0 8px 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  &__subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6b7280;
+    line-height: 20px;
+    margin: 0 0 40px 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  // ── Form fields ───────────────────────────────────────────────
+
+  &__fields {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 20px;
+  }
+
+  &__label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__forgot {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #f27a24;
+    text-decoration: none;
+    line-height: 16px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // ── Input ─────────────────────────────────────────────────────
+
+  &__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px 0 46px;
+    border: 1px solid #e5e7eb;
+    border-radius: 24px;
+    background: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #1f2937;
+    outline: none;
+    transition: border-color 0.15s ease;
+
+    &::placeholder {
+      color: #6b7280;
+    }
+
+    &:focus {
+      border-color: #f27a24;
+    }
+
+    // Remove eye icon from Edge
+    &::-ms-reveal {
+      display: none;
+    }
+  }
+
+  &__toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+
+    &:hover {
+      color: #1f2937;
+    }
+  }
+
+  // ── Checkbox ──────────────────────────────────────────────────
+
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__checkbox-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  &__checkbox-mark {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 8px;
+    background: #f27a24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  &__checkbox-input:checked + &__checkbox-mark {
+    opacity: 1;
+  }
+
+  // When unchecked, show an empty square
+  &__checkbox-input + &__checkbox-mark {
+    opacity: 1;
+    background: transparent;
+    border: 2px solid #d1d5db;
+  }
+
+  &__checkbox-input:checked + &__checkbox-mark {
+    background: #f27a24;
+    border-color: #f27a24;
+  }
+
+  &__checkbox-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1f2937;
+    line-height: 20px;
+  }
+
+  // ── Error message ─────────────────────────────────────────────
+
+  &__error {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #dc2626;
+    margin: 0;
+    padding: 8px 12px;
+    background: #fef2f2;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  // ── Submit button ─────────────────────────────────────────────
+
+  &__submit {
+    width: 100%;
+    height: 56px;
+    border: none;
+    border-radius: 24px;
+    background: #f27a24;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+
+    &:hover:not(:disabled) {
+      background: #e06b1a;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: login-spin 0.6s linear infinite;
+  }
+
+  // ── Footer ────────────────────────────────────────────────────
+
+  &__footer {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #6b7280;
+    text-align: center;
+    margin-top: 32px;
+    width: 100%;
+  }
+}
+
+@keyframes login-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

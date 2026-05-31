@@ -1,0 +1,158 @@
+<div class="login">
+  <!-- Left panel -->
+  <aside class="login__brand">
+    <div class="login__brand-header">
+      <div class="login__brand-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.66667 11L8.25 15.5833L18.3333 5.5" stroke="#f27a24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="login__brand-name">NaHora</span>
+    </div>
+
+    <div class="login__brand-stats">
+      <span class="login__brand-percent">98%</span>
+      <span class="login__brand-label">Satisfação</span>
+    </div>
+  </aside>
+
+  <!-- Right panel / form -->
+  <main class="login__form">
+    <div class="login__card">
+      <!-- Logo -->
+      <div class="login__logo">
+        <img
+          ngSrc="LogoNahora.png"
+          alt="NaHora"
+          width="80"
+          height="80"
+          class="login__logo-img"
+          priority
+        />
+      </div>
+
+      <!-- Heading -->
+      <h1 class="login__title">Bem-vindo de volta</h1>
+      <p class="login__subtitle">Entre com suas credenciais de administrador para continuar.</p>
+
+      <!-- Form -->
+      @let state = facade.pageState$ | async;
+      @let formState = facade.formState$ | async;
+
+      <form
+        #ngForm="ngForm"
+        (ngSubmit)="facade.submit().subscribe()"
+        class="login__fields"
+      >
+        <!-- Email -->
+        <div class="login__field">
+          <label class="login__label" for="email">E-mail</label>
+          <div class="login__input-wrapper">
+            <svg class="login__input-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 4.5H15C15.4125 4.5 15.75 4.8375 15.75 5.25V12.75C15.75 13.1625 15.4125 13.5 15 13.5H3C2.5875 13.5 2.25 13.1625 2.25 12.75V5.25C2.25 4.8375 2.5875 4.5 3 4.5Z" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15.75 5.25L9 9.75L2.25 5.25" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              class="login__input"
+              placeholder="admin@nahora.com"
+              [ngModel]="formState?.email ?? ''"
+              (ngModelChange)="facade.updateForm({ email: $event })"
+              required
+              autocomplete="email"
+            />
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="login__field">
+          <div class="login__label-row">
+            <label class="login__label" for="password">Senha</label>
+            <a href="#" class="login__forgot">Esqueceu a senha?</a>
+          </div>
+          <div class="login__input-wrapper">
+            <svg class="login__input-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="8.25" width="12" height="8.25" rx="1.5" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5.25 8.25V5.25C5.25 3.59315 6.59315 2.25 8.25 2.25V2.25C9.90685 2.25 11.25 3.59315 11.25 5.25V8.25" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input
+              id="password"
+              name="password"
+              [type]="formState?.showPassword ? 'text' : 'password'"
+              class="login__input"
+              placeholder="••••••••••••"
+              [ngModel]="formState?.password ?? ''"
+              (ngModelChange)="facade.updateForm({ password: $event })"
+              required
+              autocomplete="current-password"
+            />
+            <button
+              type="button"
+              class="login__toggle-password"
+              (click)="facade.toggleShowPassword()"
+              [attr.aria-label]="formState?.showPassword ? 'Ocultar senha' : 'Mostrar senha'"
+            >
+              @if (formState?.showPassword) {
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.25 2.25L15.75 15.75" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M6.6975 6.69751C5.8725 7.52251 5.25 8.71501 5.25 9.00001C5.25 9.75001 6.75 12 9 12C9.7875 12 10.6125 11.3775 11.3025 10.6875" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7.9425 4.02826C8.29519 3.95965 8.65518 3.93099 9 3.93751C13.5 3.93751 16.5 8.25001 16.5 9.00001C16.2375 9.38251 15.2625 10.755 13.5 11.8425" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12.4875 8.99249C12.2475 10.3575 11.01 11.4825 9.525 11.4825" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4.0125 9.75001C3.75 9.30751 3.5625 9.09001 3.5625 9.00001C3.5625 8.25001 5.0625 5.25001 9 5.25001" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              } @else {
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.25 9C2.25 9 4.5 3.75 9 3.75C13.5 3.75 15.75 9 15.75 9C15.75 9 13.5 14.25 9 14.25C4.5 14.25 2.25 9 2.25 9Z" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="9" cy="9" r="2.625" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              }
+            </button>
+          </div>
+        </div>
+
+        <!-- Keep connected -->
+        <label class="login__checkbox">
+          <input
+            type="checkbox"
+            class="login__checkbox-input"
+            [checked]="formState?.keepConnected ?? false"
+            (change)="facade.updateForm({ keepConnected: $any($event.target).checked })"
+          />
+          <span class="login__checkbox-mark">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 6L5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="login__checkbox-label">Manter-me conectado</span>
+        </label>
+
+        <!-- Error message -->
+        @if (state?.error; as error) {
+          <p class="login__error">{{ error }}</p>
+        }
+
+        <!-- Submit button -->
+        <button
+          type="submit"
+          class="login__submit"
+          [disabled]="ngForm.invalid || state?.loading"
+        >
+          @if (state?.loading) {
+            <span class="login__spinner"></span>
+            Entrando…
+          } @else {
+            Entrar no painel
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.75 9H14.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9.75 4.5L14.25 9L9.75 13.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          }
+        </button>
+      </form>
+
+      <p class="login__footer">Acesso restrito a administradores autorizados.</p>
+    </div>
+  </main>
+</div>
