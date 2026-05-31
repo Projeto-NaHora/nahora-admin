@@ -1,0 +1,248 @@
+<div class="dashboard">
+  <!-- ── Sidebar ──────────────────────────────────────────────── -->
+  <aside class="dashboard__sidebar">
+    <div class="dashboard__sidebar-top">
+      <!-- Brand -->
+      <header class="dashboard__brand">
+        <div class="dashboard__brand-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.24744 1.49805L15.7526 16.502" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <path d="M2.24744 16.502L15.7526 1.49805" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="dashboard__brand-name">NaHora</span>
+        <span class="dashboard__brand-badge">Admin</span>
+      </header>
+
+      <!-- Navigation -->
+      <nav class="dashboard__nav">
+        <a class="dashboard__nav-item dashboard__nav-item--active">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.25" y="2.25" width="5.25" height="6.75" rx="1" stroke="white" stroke-width="2"/>
+            <rect x="10.5" y="2.25" width="5.25" height="3.75" rx="1" stroke="white" stroke-width="2"/>
+            <rect x="10.5" y="9" width="5.25" height="6.75" rx="1" stroke="white" stroke-width="2"/>
+            <rect x="2.25" y="12" width="5.25" height="3.75" rx="1" stroke="white" stroke-width="2"/>
+          </svg>
+          Dashboard
+        </a>
+      </nav>
+    </div>
+
+    <!-- User info + logout -->
+    <div class="dashboard__user">
+      <div class="dashboard__user-avatar">A</div>
+      <div class="dashboard__user-info">
+        <span class="dashboard__user-name">Administrador</span>
+        <span class="dashboard__user-email">admin&#64;nahora.com</span>
+      </div>
+      <button
+        class="dashboard__logout"
+        (click)="facade.logout()"
+        aria-label="Sair"
+        title="Sair"
+      >
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.75 2.25H3.75C3.35218 2.25 2.97064 2.40804 2.68934 2.68934C2.40804 2.97064 2.25 3.35218 2.25 3.75V14.25C2.25 14.6478 2.40804 15.0294 2.68934 15.3107C2.97064 15.592 3.35218 15.75 3.75 15.75H6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 12.75L15.75 9L12 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15.75 9H6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ─────────────────────────────────────────── -->
+  <main class="dashboard__main">
+    <!-- Top bar -->
+    <header class="dashboard__topbar">
+      <div class="dashboard__header-text">
+        <h1 class="dashboard__title">Validação de Documentos</h1>
+        <p class="dashboard__subtitle">Profissionais aguardando aprovação de cadastro</p>
+      </div>
+
+      <div class="dashboard__actions">
+        <!-- Search -->
+        <div class="dashboard__search">
+          <svg class="dashboard__search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6.5" cy="6.5" r="5" stroke="#6b7280" stroke-width="2"/>
+            <path d="M11 11L14.5 14.5" stroke="#6b7280" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input
+            type="text"
+            class="dashboard__search-input"
+            placeholder="Buscar profissional..."
+            (input)="facade.search($any($event.target).value)"
+          />
+        </div>
+
+        <!-- Notification bell (decorative) -->
+        <button class="dashboard__bell" aria-label="Notificações">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.5 6C13.5 4.80653 13.0259 3.66193 12.182 2.81802C11.3381 1.97411 10.1935 1.5 9 1.5C7.80653 1.5 6.66193 1.97411 5.81802 2.81802C4.97411 3.66193 4.5 4.80653 4.5 6C4.5 12 2.25 13.5 2.25 13.5H15.75C15.75 13.5 13.5 12 13.5 6Z" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10.2975 15.75C10.1585 15.9821 9.96493 16.1741 9.73453 16.3088C9.50413 16.4435 9.24449 16.5167 8.97928 16.5218C8.71408 16.5269 8.45202 16.4637 8.21722 16.338C7.98243 16.2123 7.78274 16.0281 7.6362 15.8022" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Stats cards -->
+    <section class="dashboard__stats">
+      @let count = facade.pendingCount$ | async;
+
+      <div class="dashboard__stat-card">
+        <div class="dashboard__stat-icon dashboard__stat-icon--yellow">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="9" stroke="#ca8a04" stroke-width="2"/>
+            <path d="M11 5.5V12.5" stroke="#ca8a04" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="dashboard__stat-text">
+          <span class="dashboard__stat-label">Aguardando revisão</span>
+          <span class="dashboard__stat-value">{{ count ?? '—' }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table card -->
+    @let loading = facade.pageLoading$ | async;
+    @let error = facade.pageError$ | async;
+    @let professionals = facade.professionals$ | async;
+    @let pagination = facade.pagination$ | async;
+    @let processing = facade.processingIds | async;
+
+    <section class="dashboard__table-card">
+      <!-- Table header -->
+      <div class="dashboard__table-header">
+        <h2 class="dashboard__table-title">Pendentes de análise</h2>
+
+        @if (pagination; as p) {
+          <div class="dashboard__pagination">
+            <span class="dashboard__pagination-info">{{ p.start }}&ndash;{{ p.end }} de {{ p.totalElements }} resultados</span>
+            <button
+              class="dashboard__pagination-btn"
+              [disabled]="p.currentPage === 0"
+              (click)="facade.previousPage(p.currentPage)"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 4L6 8L10 12" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button
+              class="dashboard__pagination-btn"
+              [disabled]="p.currentPage >= p.totalPages - 1"
+              (click)="facade.nextPage(p.currentPage, p.totalPages)"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 4L10 8L6 12" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        }
+      </div>
+
+      <!-- Loading skeleton -->
+      @if (loading) {
+        <div class="dashboard__skeleton">
+          @for (s of [1,2,3,4,5]; track s) {
+            <div class="dashboard__skeleton-row"></div>
+          }
+        </div>
+      }
+
+      <!-- Error -->
+      @if (error; as err) {
+        <div class="dashboard__error">{{ err }}</div>
+      }
+
+      <!-- Empty -->
+      @if (!loading && professionals?.length === 0) {
+        <div class="dashboard__empty">
+          <p>Nenhum profissional pendente de revisão.</p>
+        </div>
+      }
+
+      <!-- Table -->
+      @if (!loading && professionals && professionals.length > 0) {
+        <div class="dashboard__table-wrap">
+          <table class="dashboard__table">
+            <thead>
+              <tr>
+                <th class="dashboard__col-id">ID</th>
+                <th class="dashboard__col-name">Nome</th>
+                <th class="dashboard__col-phone">Telefone</th>
+                <th class="dashboard__col-email">E-mail</th>
+                <th class="dashboard__col-actions">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (p of professionals; track p.id) {
+                <tr>
+                  <td>
+                    <span class="dashboard__row-id">#{{ p.id }}</span>
+                  </td>
+                  <td>
+                    <div class="dashboard__row-name">
+                      <div class="dashboard__row-avatar">{{ getInitials(p.nome) }}</div>
+                      <span class="dashboard__row-name-text">{{ p.nome }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="dashboard__row-phone">{{ p.telefone }}</span>
+                  </td>
+                  <td>
+                    <span class="dashboard__row-email">{{ p.email }}</span>
+                  </td>
+                  <td>
+                    <div class="dashboard__row-actions">
+                      @let isProcessing = processing?.has(p.id) ?? false;
+
+                      <button
+                        class="dashboard__btn dashboard__btn--approve"
+                        (click)="facade.approveProfessional(p.id)"
+                        [disabled]="isProcessing"
+                      >
+                        @if (isProcessing) {
+                          <span class="dashboard__btn-spinner"></span>
+                        } @else {
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.33333 7L5.83333 10.5L11.6667 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        }
+                        Aprovar
+                      </button>
+
+                      <button
+                        class="dashboard__btn dashboard__btn--reject"
+                        (click)="facade.rejectProfessional(p.id)"
+                        [disabled]="isProcessing"
+                      >
+                        @if (isProcessing) {
+                          <span class="dashboard__btn-spinner"></span>
+                        } @else {
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        }
+                        Rejeitar
+                      </button>
+
+                      <button
+                        class="dashboard__btn dashboard__btn--details"
+                        (click)="facade.goToDetail(p)"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1.16638 7.00016C1.16638 7.00016 2.91638 2.91683 7.00012 2.91683C11.0839 2.91683 12.8339 7.00016 12.8339 7.00016C12.8339 7.00016 11.0839 11.0835 7.00012 11.0835C2.91638 11.0835 1.16638 7.00016 1.16638 7.00016Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <circle cx="7" cy="7" r="2.1875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Ver detalhes
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </section>
+  </main>
+</div>
